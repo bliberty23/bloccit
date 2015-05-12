@@ -17,12 +17,27 @@
  end
  posts = Post.all
  
+ 1.times do
+     Post.create!(
+         title: "Hope I am doing this right",
+         body: "No way I am."
+     )
+ end
+ 
+ 
  # Create Comments
  100.times do
    Comment.create!(
      post: posts.sample,
      body: Faker::Lorem.paragraph
    )
+ end
+ 
+ 1.times do
+     Comment.create!(
+         post: 1,
+         body: "Where will this end up."
+     )
  end
  
  puts "Seed finished"
