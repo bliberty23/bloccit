@@ -17,10 +17,10 @@
  end
  posts = Post.all
  
- 1.times do
-     Post.create!(
-         title: "Hope I am doing this right",
-         body: "No way I am."
+ unless Post.find_by_title("Hope I am doing this right") 
+ Post.create!(
+    title: "Hope I am doing this right",
+    body: "No way I am."
      )
  end
  
@@ -33,10 +33,10 @@
    )
  end
  
- 1.times do
+unless Comment.find_by_body("Where will this end up.")
      Comment.create!(
-         post: 1,
-         body: "Where will this end up."
+       post: Post.first,
+       body: "Where will this end up."
      )
  end
  
