@@ -40,6 +40,9 @@ gem 'spring',        group: :development
 #Checkpoint 22
 gem 'bootstrap-sass'
 
+#Checkpint 30
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
