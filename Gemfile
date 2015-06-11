@@ -41,7 +41,7 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass'
 
 #Checkpint 30
-gem 'devise'
+gem 'devise', '3.5.1'
 
 #Checkpoint 31
 gem 'figaro', '1.0'
