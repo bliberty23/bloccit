@@ -141,7 +141,11 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   coffee-rails (~> 4.0.0)
+<<<<<<< HEAD
   devise (= 3.5.1)
+=======
+  devise (>= 3.5.1)
+>>>>>>> 726c73ec0eaacab15dbc96678da21adf08467a78
   faker
   figaro (= 1.0)
   jbuilder (~> 2.0)
