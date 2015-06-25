@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'comments/new'
+
   devise_for :users
   
   resources :users, only: [:update]
   
   resources :topics do
     resources :posts, except: [:index]
+      resources :comments, only: [:new]
   end
 
   get 'about' => 'welcome#about'
