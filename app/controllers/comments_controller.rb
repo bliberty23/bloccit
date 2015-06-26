@@ -11,5 +11,5 @@ class CommentsController < ApplicationController
        flash[:error] = "There was an error saving the comment. Please try again."
        render :new
     end
-  end
+ end
 end
