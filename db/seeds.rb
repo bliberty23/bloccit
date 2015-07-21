@@ -63,33 +63,37 @@ users = User.all
 # Create Topics
 15.times do
   Topic.create!(
-    name:         Faker::Lorem.sentence,
-    description:  Faker::Lorem.paragraph
+    name:         "#{i} #{Faker::Lorem.sentence}",
+    description:  "#{i} #{Faker::Lorem.paragraph}"
   )
 end
 topics = Topic.all
+puts "#{Topic.count} topics created"
 
 
 # Create Posts
-50.times do
+50.times do |i|
   Post.create!(
     user:   users.sample,
     topic:  topics.sample,
-    title:  Faker::Lorem.sentence,
-    body:   Faker::Lorem.paragraph
+    title:  "#{i} #{Faker::Lorem.sentence}",
+    body:   "#{i} #{Faker::Lorem.paragraph}"
   )
 end
 posts = Post.all
+puts "#{Post.count} posts created"
 
 # Create Comments
 100.times do
   Comment.create!(
     # user: users.sample,   # we have not yet associated Users with Comments
     post: posts.sample,
-    body: Faker::Lorem.paragraph
+    body: "#{i} #{Faker::Lorem.paragraph}"
   )
 end
+puts "#{Comment.count} comments created"
+
 
 puts "Seed finished"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
+
+
