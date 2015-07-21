@@ -61,7 +61,7 @@ users = User.all
 # The `save` method then saves this User to the database.
 
 # Create Topics
-15.times do
+15.times do |i|
   Topic.create!(
     name:         "#{i} #{Faker::Lorem.sentence}",
     description:  "#{i} #{Faker::Lorem.paragraph}"
@@ -84,7 +84,7 @@ posts = Post.all
 puts "#{Post.count} posts created"
 
 # Create Comments
-100.times do
+100.times do |i|
   Comment.create!(
     # user: users.sample,   # we have not yet associated Users with Comments
     post: posts.sample,
