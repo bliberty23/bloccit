@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
- def create
+
+  def create
     @topic = Topic.find params[:topic_id]
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
@@ -37,4 +38,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body)
   end
+
 end
