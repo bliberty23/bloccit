@@ -17,6 +17,11 @@
 </div>
 <div class='row'>
   <div class='col-xs-12'>
+    <%= render partial: 'comments/form', locals: { new_comment: @new_comment } %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-xs-12'>
     <%= render @comments %>
   </div>
 </div>
