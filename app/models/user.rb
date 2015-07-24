@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   
   def admin?
-   role == 'admin'
+   @role == 'admin'
   end
   
   def moderator?
-   role == 'moderator'
+   @role == 'moderator'
   end
   
 end
