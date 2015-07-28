@@ -1,15 +1,15 @@
  class CommentPolicy < ApplicationPolicy
-
-  def new?
-    user.present?
-  end
   
   def create?
-    user.present?
+    show?
   end
 
-  def update?
-    user.present? and (user.admin? or not post.published?)
+  def destroy?
+    super
+  end
+
+  def show?
+    user.present?
   end
 
   class Scope < Scope
