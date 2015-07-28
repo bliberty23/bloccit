@@ -8,8 +8,6 @@ class Post < ActiveRecord::Base
     
     validates :title, length: { minimum: 5 }, presence: true
     validates :body, length: { minimum: 20 }, presence: true
-    #validates :topic, presence: true
-    #validates :user, presence: true
     
     mount_uploader :image, ImageUploader
     
@@ -33,11 +31,27 @@ class Post < ActiveRecord::Base
  
         update_attribute(:rank, new_rank)
     end
+
+    def markdown_title
+      render_as_markdown(self.title)
+    end
+    
+    def markdown_body
+        render_as_markdown(self.body)
+    end
     
     private
     
     def create_vote
         user.votes.create(value: 1, post: self)
+
+    private
+   
+    def render_as_markdown(markdown)
+        renderer = Redcarpet::Render::HTML.new
+        extensions = {fenced_code_blocks: true}
+        redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+        (redcarpet.render markdown).html_safe
     end
    
 end

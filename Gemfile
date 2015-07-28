@@ -62,6 +62,12 @@ gem 'fog'
 #Checkpoint 45
 gem 'will_paginate', '~> 3.0.5'
 
+#Checkpoint 46 Comments (Debugging with better errors)
+group :development do
+  gem 'better_errors'
+  gem "binding_of_caller"
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

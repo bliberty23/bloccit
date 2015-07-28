@@ -1,14 +1,20 @@
 <div class="media">
-  <%= link_to '#', class: 'pull-left' do %>
-    <%= image_tag(comment.user.avatar.small.url) if comment.user.avatar? %>
-  <% end %>
+  <div class="media-left">
+    <% if comment.user.avatar.present? %>
+      <%= image_tag comment.user.avatar.small.url, class: "media-object" %>
+    <% else %>
+      <img src="http://placehold.it/64/DFF0D8" class="media-object">
+    <% end %>
+  </div>
   <div class="media-body">
-    <small>
-      <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
-      <% if policy(comment).destroy? %>
-        | <%= link_to "Delete", [@post, comment], method: :delete %>
-      <% end %>
-    </small>
+      <h4 class="media-heading">
+        <%= comment.user.name %>
+      </h4>
     <p><%= comment.body %></p>
+  </div>
+  <div class="media-right">
+    <%= link_to [comment.post.topic, comment.post, comment], method: :delete, class: 'media-heading pull-right' do %>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <% end %>
   </div>
 </div>
