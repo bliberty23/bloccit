@@ -1,4 +1,4 @@
-<h1><%= markdown_to_html @post.title %></h1>
+<h1><%= @post.markdown_title %></h1>
 
 <div class="row">
   <div class="col-md-8">
@@ -7,14 +7,34 @@
        submitted <%= time_ago_in_words(@post.created_at) %> ago by
        <%= @post.user.name %>
     </small>
-    <p><%= markdown_to_html @post.body %></p>
+    <p><%= @post.markdown_body %></p>
   </div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>
       <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
     <% end %>
   </div>
-  <% if policy(Comment.new).create? %>
-  <% render "comments/form" %>
-  <% end %>
 </div>
+<% if policy(@new_comment).show? %>
+<div class='row'>
+  <div class='col-xs-8'>
+    <h3>Comments</h3>
+    <%= render @comments %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-xs-8'>
+    <h4>Add a comment</h4>
+    <%= render partial: 'comments/form', locals: { comment: @new_comment } %>
+  </div>
+</div>
+<% else %>
+<div class='row'>
+  <div class='col-xs-8'>
+      <h3>Comments</h3>
+    <div class='alert alert-info'>
+      <p>You need to be signed in to view and contribute to comments.</p>
+    </div>
+  </div>
+</div>
+<% end %>

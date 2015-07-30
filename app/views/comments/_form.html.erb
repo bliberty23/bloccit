@@ -1,9 +1,8 @@
-<%= form_for [@topic, @post] do |f| %>
+<%= form_for [comment.post.topic, comment.post, comment] do |f| %>
    <div class="form-group">
-     <%= f.label :body %>
-     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter comment" %>
+     <%= f.text_area :body, rows: 4, class: 'form-control', placeholder: "Enter comment" %>
    </div>
    <div class="form-group">
-     <%= f.submit "Save", class: 'btn btn-success' %>
+     <%= f.submit "Save", class: 'btn btn-success pull-right' %>
    </div>
 <% end %>
