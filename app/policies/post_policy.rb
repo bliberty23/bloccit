@@ -12,4 +12,9 @@
   def update?
     user.present? and (user.admin? or not post.published?)
   end
+  
+  def destroy?
+    user.present? && (record.user == user || user.admin? || user.moderator?)
+  end
+  
  end
