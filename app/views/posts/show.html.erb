@@ -1,5 +1,8 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class='col-xs-1'>
+    <%= render partial: 'votes/voter', locals: { post: @post } %>
+  </div>
+  <div class="col-xs-11">
     <h1><%= @post.markdown_title %>
       <small>
          <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
@@ -11,7 +14,8 @@
 </div>
 <div class="row">
   <div class="col-xs-10">
-    <p><%= @post.markdown_body %></p>
+    <%= @post.markdown_body %>
+    <%= image_tag(@post.image.url, class: 'img-thumbnail pull-right') if @post.image? %>
   </div>
   <div class="col-xs-2">
     <% if policy(@post).edit? %>
@@ -19,30 +23,37 @@
     <% end %>
     
     <% if policy(@post).destroy? %>
-       <%= link_to "Delete Post", [@topic, @post], method: :delete, class: 'btn btn-danger btn-block', data: { confirm: 'Are you sure you want to delete this post?' } %>
-     <% end %>
-  </div>
-</div>
-<% if policy(@new_comment).show? %>
-<div class='row'>
-  <div class='col-xs-10'>
-    <h3>Comments</h3>
-    <%= render @comments %>
-  </div>
-</div>
-<div class='row'>
-  <div class='col-xs-10'>
-    <h4>Add a comment</h4>
-    <%= render partial: 'comments/form', locals: { comment: @new_comment } %>
-  </div>
-</div>
-<% else %>
-<div class='row'>
-  <div class='col-xs-10'>
-      <h3>Comments</h3>
-    <div class='alert alert-info'>
-      <p>You need to be signed in to view and contribute to comments.</p>
+      <%= link_to "Delete Post", [@topic, @post], method: :delete, class: 'btn btn-danger btn-block', data: { confirm: 'Are you sure you want to delete this post?' } %>
+    <% end %>
+    <div>
+      <h3><%= pluralize(@post.points, 'point') %></h3>
+      <small>
+        <%= pluralize(@post.up_votes, 'up vote') %>
+        <%= pluralize(@post.down_votes, 'down vote') %>
+      </small>
     </div>
   </div>
 </div>
+<% if policy(@new_comment).show? %>
+  <div class='row'>
+    <div class='col-xs-10'>
+      <h3>Comments</h3>
+      <%= render @comments %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-10'>
+      <h4>Add a comment</h4>
+      <%= render partial: 'comments/form', locals: { comment: @new_comment } %>
+    </div>
+  </div>
+<% else %>
+  <div class='row'>
+    <div class='col-xs-10'>
+        <h3>Comments</h3>
+      <div class='alert alert-info'>
+        <p>You need to be signed in to view and contribute to comments.</p>
+      </div>
+    </div>
+  </div>
 <% end %>

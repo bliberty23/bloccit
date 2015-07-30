@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'comments/new'
+  root to: 'welcome#index'
+  get 'about', to: 'welcome#about'
 
   devise_for :users
   
@@ -12,10 +13,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: [] do
     resources :comments, only: [:create, :destroy]
+    post '/up-vote', to: 'votes#up_vote', as: :up_vote
+    post '/down-vote', to: 'votes#down_vote', as: :down_vote
   end
-
-  get 'about' => 'welcome#about'
-  
-  root to: 'welcome#index'
-
 end
