@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @comments = @post.comments
     @new_comment = Comment.new(post: @post)
   end
-  
+
   def new
     @topic = Topic.find(params[:topic_id])
     @post = Post.new(topic: @topic)
