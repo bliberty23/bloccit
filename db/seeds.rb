@@ -77,7 +77,7 @@ puts "#{Topic.count} topics created"
     user:   users.sample,
     topic:  topics.sample,
     title:  "#{i} #{Faker::Lorem.sentence}",
-    body:   "#{i} #{Faker::Lorem.paragraph(6)}"
+    body:   "#{i} #{Faker::Lorem.paragraphs(6).join("\n\n")}"
   )
 end
 posts = Post.all
@@ -88,7 +88,7 @@ puts "#{Post.count} posts created"
   Comment.create!(
     user: users.sample,
     post: posts.sample,
-    body: "#{i} #{Faker::Lorem.paragraph(2)}"
+    body: "#{i} #{Faker::Lorem.paragraphs(2).join("\n\n")}"
   )
 end
 puts "#{Comment.count} comments created"
