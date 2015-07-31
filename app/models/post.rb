@@ -11,6 +11,8 @@ class Post < ActiveRecord::Base
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
 
+  after_create :create_vote
+
   def up_votes
     votes.where(value: 1).count
   end
@@ -55,6 +57,10 @@ class Post < ActiveRecord::Base
   end
 
   def create_vote
-    Vote.create(value: 1, post: self, user: self.user)
+    unless votes.find_by_user_id self.user_id
+      Vote.create(value: 1, post: self, user: self.user)
+    else
+      return true
+    end
   end
 end
