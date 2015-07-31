@@ -47,6 +47,14 @@ class Post < ActiveRecord::Base
     update_attribute(:rank, new_rank)
   end
   
+  def create_vote
+    unless votes.find_by_user_id self.user_id
+      Vote.create(value: 1, post: self, user: self.user)
+    else
+      return true
+    end
+  end
+
   private
  
   def render_as_markdown(markdown)
@@ -56,11 +64,4 @@ class Post < ActiveRecord::Base
     (redcarpet.render markdown).html_safe
   end
 
-  def create_vote
-    unless votes.find_by_user_id self.user_id
-      Vote.create(value: 1, post: self, user: self.user)
-    else
-      return true
-    end
-  end
 end
