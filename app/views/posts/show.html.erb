@@ -14,8 +14,8 @@
 </div>
 <div class="row">
   <div class="col-xs-10">
+    <%= image_tag(@post.image.url, class: 'img-thumbnail img-responsive pull-right') if @post.image? %>
     <%= @post.markdown_body %>
-    <%= image_tag(@post.image.url, class: 'img-thumbnail pull-right') if @post.image? %>
   </div>
   <div class="col-xs-2">
     <% if policy(@post).edit? %>
