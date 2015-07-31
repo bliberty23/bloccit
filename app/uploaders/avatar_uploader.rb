@@ -24,19 +24,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_fill => [200, 300]
+  process :resize_to_fill => [384, 384]
 
   # Create different versions of your uploaded files:
   version :tiny do
-     process :resize_to_fill => [20, 20]
+     process :resize_to_fill => [32, 32]
   end
   
-   version :small do
-     process :resize_to_fill => [30, 30]
+   version :comment do
+     process :resize_to_fill => [64, 64]
   end
   
    version :profile do
-     process :resize_to_fill => [45, 45]
+     process :resize_to_fill => [128, 128]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
