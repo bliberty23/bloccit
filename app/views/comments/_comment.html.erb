@@ -1,7 +1,7 @@
 <div class="media">
   <div class="media-left">
     <% if comment.user.avatar.present? %>
-      <%= image_tag comment.user.avatar.small.url, class: "media-object" %>
+      <%= image_tag comment.user.avatar.comment.url, class: "media-object" %>
     <% else %>
       <img src="http://placehold.it/64/DFF0D8" class="media-object">
     <% end %>
