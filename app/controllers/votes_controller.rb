@@ -15,15 +15,15 @@ class VotesController < ApplicationController
   
   def load_post_and_vote
    @post = Post.find(params[:post_id])
-   @vote = @post.votes.where(user_id: current_user.id).first
+   @vote = @post.votes.find_by_user_id current_user.id
   end
   
   def update_vote!(new_value)
-    if @vote
+    if @vote.present?
       authorize @vote, :update?
       @vote.update_attribute(:value, new_value)
     else
-      @vote = current_user.votes.build(value: new_value, post: @post)
+      @vote = Vote.new(user: current_user, post: @post)
       authorize @vote, :create?
       @vote.save
     end
