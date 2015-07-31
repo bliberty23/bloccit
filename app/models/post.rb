@@ -33,6 +33,13 @@ class Post < ActiveRecord::Base
     render_as_markdown(self.body)
   end
 
+  def save_with_initial_vote
+    ActiveRecord::Base.transaction do
+      self.save
+      create_vote
+    end
+  end
+
   def update_rank
     age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 * 24) # 1 day in seconds
     new_rank = points + age_in_days

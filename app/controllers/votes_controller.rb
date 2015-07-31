@@ -28,7 +28,4 @@ class VotesController < ApplicationController
       @vote.save
     end
   end
-  
-  
-  
 end
