@@ -68,6 +68,9 @@ group :development do
   gem "binding_of_caller"
 end
 
+# for debugging
+gem 'pry-rails', group: :development
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
