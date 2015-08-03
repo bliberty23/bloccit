@@ -13,7 +13,7 @@
     <p><%= comment.body %></p>
   </div>
   <div class="media-right">
-    <%= link_to [comment.post.topic, comment.post, comment], method: :delete, class: 'media-heading pull-right' do %>
+    <%= link_to [comment.post, comment], method: :delete, class: 'media-heading pull-right' do %>
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     <% end %>
   </div>
