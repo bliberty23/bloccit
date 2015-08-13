@@ -1,13 +1,12 @@
 class FavoritesController < ApplicationController
     
     def create
-        post = Post.find(params[:post_id])
-        favorite = current_user.favorites.build(post: post)
+        @post = Post.find(params[:post_id])
+        @favorite = Favorite.new(user: current_user, post: @post)
         
-        authorize favorite
+        authorize @favorite
         
-        if favorite.save
-            flash[:notice] = "You favorited this post"
+        if @favorite.save
             redirect_to [@post.topic, @post]
         else
             flash[:error] = "Unable to add favorite. Please try again."
@@ -17,12 +16,11 @@ class FavoritesController < ApplicationController
     
     def destroy
         @post = Post.find(params[:post_id])
-        favorite = current_user.favorites.find(params[:id])
+        @favorite = current_user.favorites.find(params[:id])
         
-        authorize favorite
+        authorize @favorite
         
-        if favorite.destroy
-            flash[:success] = "Removed favorite."
+        if @favorite.destroy
             redirect_to [@post.topic, @post]
         else
             flash[:error] = "Unable to remove favorite. Please try again."
